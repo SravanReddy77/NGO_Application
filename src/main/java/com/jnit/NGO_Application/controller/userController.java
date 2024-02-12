@@ -19,7 +19,7 @@ public class userController implements userService {
      this.userRepository = userRepository;
  }
 @PostMapping("/saveUser")
- public user createUser(String username, String email, String password) {
+ public user createUser(String first_name, String last_name, String email, String password, String role) {
      user newUser = new user();
      return userRepository.save(newUser);
  }

@@ -13,6 +13,6 @@ public class NgoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(NgoApplication.class, args);
 		System.out.print("Hello here");
-	}
+	}											
 
 }

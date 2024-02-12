@@ -1,15 +1,18 @@
 
 package com.jnit.NGO_Application.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.jnit.NGO_Application.model.event;
 import com.jnit.NGO_Application.repository.eventRepository;
 
 import com.jnit.NGO_Application.service.eventService;
 
-
+@RestController
 public class eventController implements eventService {
  private eventRepository eventRepository;
 
@@ -21,10 +24,14 @@ public class eventController implements eventService {
      event newEvent = new event();
      return eventRepository.save(newEvent);
  }
- @GetMapping("/getEvent")
+@GetMapping("/getEvent")
  public event getEventById(int eventId) {
      return eventRepository.findById(eventId);
  }
+@GetMapping("/events")
+public List<event> getEvents() {
+	return eventRepository.findAll();
+}
 //
 // public void updateEvent(event event) {
 //     eventRepository.update(event);

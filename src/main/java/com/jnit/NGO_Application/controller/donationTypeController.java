@@ -1,15 +1,18 @@
 
 package com.jnit.NGO_Application.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.jnit.NGO_Application.model.donationtype;
 import com.jnit.NGO_Application.repository.donationTypeRepository;
 
 import com.jnit.NGO_Application.service.donationTypeService;
 
-
+@RestController
 public class donationTypeController implements donationTypeService {
  private donationTypeRepository donationTypeRepository;
 
@@ -24,6 +27,10 @@ public class donationTypeController implements donationTypeService {
  @GetMapping("/getDonationType")
  public donationtype getDonationTypeById(int donationTypeId) {
      return donationTypeRepository.findById(donationTypeId);
+ }
+ @GetMapping("/donationTypes")
+ public List<donationtype> getdonationtypes(){
+	 return donationTypeRepository.findAll();
  }
 
 // public void updateDonationType(donationtype donationType) {
