@@ -5,11 +5,14 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jnit.NGO_Application.model.event;
+import com.jnit.NGO_Application.model.user;
 import com.jnit.NGO_Application.repository.eventRepository;
 
 import com.jnit.NGO_Application.service.eventService;
@@ -33,11 +36,13 @@ public class eventController implements eventService {
 public List<event> getEvents() {
 	return eventRepository.findAll();
 }
-//
-// public void updateEvent(event event) {
-//     eventRepository.update(event);
-// }
-
+@PutMapping("/event/{id}")
+public event updateEvent(@PathVariable Long id, @RequestBody event newEvent) {
+	return eventRepository.findById(id).map(event -> {
+		newEvent.setEventName(newEvent.getEventName());
+		return eventRepository.save(newEvent);
+	}).orElseThrow();
+}
 @DeleteMapping("/event")
  public void deleteEvent(@RequestBody event newEvent) {
      eventRepository.delete(newEvent);

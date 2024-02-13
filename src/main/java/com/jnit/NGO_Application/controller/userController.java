@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,10 +34,13 @@ public class userController implements userService {
 public List<user> getUser() {
 	return userRepository.findAll();
 	}
-//@PutMapping("/userId")
-// public void updateUser(user user) {
-//     userRepository.update(user);
-// }
+@PutMapping("/user/{id}")
+public user updateUser(@PathVariable Long id, @RequestBody user newUser) {
+	return userRepository.findById(id).map(user -> {
+		newUser.setEmail(newUser.getEmail());
+		return userRepository.save(newUser);
+	}).orElseThrow();
+}
 @DeleteMapping("/user")
  public void deleteUser(@RequestBody user newUser) {
      userRepository.delete(newUser);
