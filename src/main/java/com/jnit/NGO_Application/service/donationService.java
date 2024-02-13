@@ -5,7 +5,7 @@ import java.util.List;
 import com.jnit.NGO_Application.model.donation;
 
 public interface donationService {
-	   donation createDonation(String username, String email, String password);
+	   donation createDonation(donation newDonation);
 	   donation getDonationById(int donationId);
 	   List<donation> getDonations();
 //	    void updateDonation(donation donation);

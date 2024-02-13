@@ -2,8 +2,10 @@ package com.jnit.NGO_Application.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jnit.NGO_Application.model.user;
@@ -18,9 +20,8 @@ public class userController implements userService {
  public userController(userRepository userRepository) {
      this.userRepository = userRepository;
  }
-@PostMapping("/saveUser")
- public user createUser(String first_name, String last_name, String email, String password, String role) {
-     user newUser = new user();
+@PostMapping("/saveuser")
+ public user createUser(@RequestBody user newUser) {
      return userRepository.save(newUser);
  }
 @GetMapping("/getUser")
@@ -35,8 +36,8 @@ public List<user> getUser() {
 // public void updateUser(user user) {
 //     userRepository.update(user);
 // }
-//@DeleteMapping("/deleteId")
-// public void deleteUser(int userId) {
-//     userRepository.delete(userId);
-// }
+@DeleteMapping("users/{userId}")
+ public void deleteUser(int userId) {
+     userRepository.delete(userId);
+ }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jnit.NGO_Application.model.donationtype;
@@ -19,9 +20,8 @@ public class donationTypeController implements donationTypeService {
  public donationTypeController(donationTypeRepository donationTypeRepository) {
      this.donationTypeRepository = donationTypeRepository;
  }
- @PostMapping("/saveDOnationType")
- public donationtype createDonationType(String username, String email, String password) {
-     donationtype newDonationType = new donationtype();
+ @PostMapping("/saveDonationType")
+ public donationtype createDonationType(@RequestBody donationtype newDonationType) {
      return donationTypeRepository.save(newDonationType);
  }
  @GetMapping("/getDonationType")

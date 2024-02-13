@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jnit.NGO_Application.model.event;
@@ -20,8 +21,7 @@ public class eventController implements eventService {
      this.eventRepository = eventRepository;
  }
  @PostMapping("/saveEvent")
- public event createEvent(String username, String email, String password) {
-     event newEvent = new event();
+ public event createEvent(@RequestBody event newEvent) {
      return eventRepository.save(newEvent);
  }
 @GetMapping("/getEvent")

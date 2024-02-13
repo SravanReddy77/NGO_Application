@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jnit.NGO_Application.model.donation;
@@ -20,8 +21,7 @@ public class donationController implements donationService {
      this.donationRepository = donationRepository;
  }
  @PostMapping("/saveDonation")
- public donation createDonation(String username, String email, String password) {
-     donation newDonation = new donation();
+ public donation createDonation(@RequestBody donation newDonation) {
      return donationRepository.save(newDonation);
  }
  @GetMapping("/getDonation")
