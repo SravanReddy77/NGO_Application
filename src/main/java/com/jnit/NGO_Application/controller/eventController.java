@@ -33,7 +33,7 @@ public class eventController implements eventService {
      return eventRepository.findById(eventId);
  }
 @GetMapping("/events")
-public List<event> getEvents() {
+public List<event> getEvents() {	
 	return eventRepository.findAll();
 }
 @PutMapping("/event/{id}")
