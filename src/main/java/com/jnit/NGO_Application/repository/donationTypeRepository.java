@@ -14,6 +14,6 @@ import com.jnit.NGO_Application.model.donationtype;
 		
 		public List<donationtype> findAll();
 //		public void update(donationtype donationType);
-//		public void delete(int donationTypeId);
+		public void delete(donationtype donationtype);
 	}
 

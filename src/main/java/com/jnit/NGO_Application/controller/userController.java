@@ -36,8 +36,8 @@ public List<user> getUser() {
 // public void updateUser(user user) {
 //     userRepository.update(user);
 // }
-@DeleteMapping("users/{userId}")
- public void deleteUser(int userId) {
-     userRepository.delete(userId);
+@DeleteMapping("/user")
+ public void deleteUser(@RequestBody user newUser) {
+     userRepository.delete(newUser);
  }
 }

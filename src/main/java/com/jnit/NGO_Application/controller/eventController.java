@@ -3,6 +3,7 @@ package com.jnit.NGO_Application.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,7 +38,8 @@ public List<event> getEvents() {
 //     eventRepository.update(event);
 // }
 
-// public void deleteEvent(int eventId) {
-//     eventRepository.delete(eventId);
-// }
+@DeleteMapping("/event")
+ public void deleteEvent(@RequestBody event newEvent) {
+     eventRepository.delete(newEvent);
+ }
 }

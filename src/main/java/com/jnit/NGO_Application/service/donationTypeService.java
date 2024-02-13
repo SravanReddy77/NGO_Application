@@ -9,5 +9,5 @@ public interface donationTypeService {
 	   donationtype getDonationTypeById(int donationTypeId);
 	   List<donationtype> getdonationtypes();
 //	    void updateDonationType(donationtype donationType);
-//	    void deleteDonationType(int donationTypeId);
+	    void deleteDonationType(donationtype newDonationType);
 }

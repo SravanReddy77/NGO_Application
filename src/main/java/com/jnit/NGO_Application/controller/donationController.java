@@ -3,6 +3,7 @@ package com.jnit.NGO_Application.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,7 +40,8 @@ public class donationController implements donationService {
 //     donationRepository.update(donation);
 // }
 
-// public void deleteDonation(int donationId) {
-//     donationRepository.delete(donationId);
-// }
+ @DeleteMapping("/donation")
+ public void deleteDonation(@RequestBody donation newDonation) {
+     donationRepository.delete(newDonation);
+ }
 }

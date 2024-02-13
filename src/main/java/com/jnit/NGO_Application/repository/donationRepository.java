@@ -15,7 +15,7 @@ import com.jnit.NGO_Application.model.donation;
 
 //		public void update(donation donation);
 
-//		public void delete(int donationId);
+		public void delete(donation donation);
 	}
 
 

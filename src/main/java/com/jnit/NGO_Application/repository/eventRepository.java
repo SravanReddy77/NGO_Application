@@ -19,7 +19,7 @@ import com.jnit.NGO_Application.model.event;
 
 //		public void update(event event);
 
-//		public void delete(int eventId);
+		public void delete(event event);
 	}
 
 

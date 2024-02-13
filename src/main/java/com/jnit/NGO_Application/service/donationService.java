@@ -9,5 +9,5 @@ public interface donationService {
 	   donation getDonationById(int donationId);
 	   List<donation> getDonations();
 //	    void updateDonation(donation donation);
-//	    void deleteDonation(int donationId);
+	    void deleteDonation(donation newDonation);
 }
