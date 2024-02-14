@@ -1,56 +1,78 @@
 import React, { useState } from "react";
-import axios from "axios";
+//import axios from "axios";
+import "./css/login.css";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Login () {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [loginError, setLoginError] = useState('');
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [emailError, setEmailError] = useState("")
+    const [passwordError, setPasswordError] = useState("")
+    
+    const navigate = useNavigate();
+        
+    const onButtonClick = () => {
+                // Set initial error values to empty
+        setEmailError("")
+        setPasswordError("")
 
-    const handleLogin = async () => {
-        try {
-            // Make an API call to the login endpoint
-            const response = await axios.post("http://localhost:8080/login", {
-                email,
-                password,
-            });
-
-            // Assuming a successful login, update state or perform necessary actions
-            console.log("Login successful:", response.data);
-
-            // Redirect to the landing page
-          //  navigate("/landing");
-
-        } catch (error) {
-            // Handle login error
-            console.error("Login failed", error.response.data);
-            setLoginError("Invalid credentials. Please try again.");
+        // Check if the user has entered both fields correctly
+        if ("" === email) {
+            setEmailError("Please enter your email")
+            return
         }
-    };
 
-    return (
-        <div>
-            <h1>Login Page</h1>
-            <form className= "login-form">
-                <div>
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-                <button onClick={handleLogin}>Login</button>
-                    {loginError && <p style={{ color: "red" }}>{loginError}</p>}
-            </form>
+        if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+            setEmailError("Please enter a valid email")
+            return
+        }
+
+        if ("" === password) {
+            setPasswordError("Please enter a password")
+            return
+        }
+
+        if (password.length < 7) {
+            setPasswordError("The password must be 8 characters or longer")
+            return
+        }
+
+        // Authentication calls will be made here...   
+        navigate("./home")    
+
+    }
+
+    return <div className={"mainContainer"}>
+        <div className={"titleContainer"}>
+            <div>NGO Application</div>
         </div>
-    );
-};
+        <br />
+        <div className={"inputContainer"}>
+            <input
+                value={email}
+                placeholder="Enter your email here"
+                onChange={ev => setEmail(ev.target.value)}
+                className={"inputBox"} />
+            <label className="errorLabel">{emailError}</label>
+        </div>
+        <br />
+        <div className={"inputContainer"}>
+            <input
+                value={password}
+                placeholder="Enter your password here"
+                onChange={ev => setPassword(ev.target.value)}
+                className={"inputBox"} />
+            <label className="errorLabel">{passwordError}</label>
+        </div>
+        <br />
+        <div className={"inputContainer"}>
+            <input
+                className={"inputButton"}
+                type="button"
+                onClick={onButtonClick}
+                value={"Log in"} />
+        </div>
+    </div>
+}
 
